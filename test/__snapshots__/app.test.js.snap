@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`smoke test renders with no errors 1`] = `
+<div
+  className="home"
+>
+  #peggysphotos
+</div>
+`;
