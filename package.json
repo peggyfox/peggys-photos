@@ -4,6 +4,7 @@
   "description": "Peggy's Photos",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peggy Fox",
@@ -11,5 +12,19 @@
   "dependencies": {
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }
