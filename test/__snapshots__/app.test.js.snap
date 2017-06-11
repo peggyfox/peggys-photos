@@ -2,8 +2,18 @@
 
 exports[`smoke test renders with no errors 1`] = `
 <div
-  className="home"
+  className="container"
 >
-  #peggysphotos
+  <header>
+    Peggys Photos
+  </header>
+  <div>
+    <div />
+    <div />
+    <div />
+    <div />
+    <div />
+  </div>
+  <div />
 </div>
 `;

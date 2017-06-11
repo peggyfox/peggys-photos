@@ -1,24 +1,42 @@
 import fetch from 'isomorphic-fetch';
 
-export const FETCH_PHOTOS_SUCCESS = 'FETCH_PHOTOS_SUCCESS';
+export const UPDATE_PHOTOS = 'UPDATE_PHOTOS';
+export const UPDATE_SELECTED_PHOTO = 'UPDATE_SELECTED_PHOTO';
 
-function fetchSuccess(photos) {
+function updatePhotos(photos) {
+  localStorage.setItem('photos', JSON.stringify(photos));
   return {
-    type: FETCH_PHOTOS_SUCCESS,
+    type: UPDATE_PHOTOS,
     photos,
   };
-}
-
-function fetchError(error) {
-  console.log('caught an error', error);
 }
 
 function fetchPhotos() {
   return dispatch =>
     fetch('https://jsonplaceholder.typicode.com/photos')
       .then(response => response.json())
-      .then(json => dispatch(fetchSuccess(json)))
-      .catch(error => fetchError(error));
+      .then(json => dispatch(updatePhotos(json)));
+}
+
+export function updateSelectedPhoto(photo) {
+  return {
+    type: UPDATE_SELECTED_PHOTO,
+    photo,
+  };
+}
+
+export function saveSelectedPhoto() {
+  return (dispatch, getState) => {
+    const selectedPhoto = getState().selectedPhoto;
+    const photos = getState().photos.map((photo) => {
+      if (selectedPhoto.id === photo.id) {
+        return selectedPhoto;
+      }
+      return photo;
+    });
+    dispatch(updatePhotos(photos));
+    return dispatch(updateSelectedPhoto(null));
+  };
 }
 
 export function getPhotos() {
@@ -26,7 +44,6 @@ export function getPhotos() {
     if (!getState().photos.length) {
       return dispatch(fetchPhotos());
     }
+    return null;
   };
 }
-
-

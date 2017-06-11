@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getPhotos } from '../actions';
+import { getPhotos, updateSelectedPhoto } from '../actions';
+import { photoPropType } from '../prop-types';
 
 class Photos extends Component {
 
@@ -9,20 +11,34 @@ class Photos extends Component {
     dispatch(getPhotos());
   }
 
+  handleClick(photo) {
+    const { dispatch } = this.props;
+    dispatch(updateSelectedPhoto(photo));
+  }
+
   render() {
     const { photos } = this.props;
     const photoGrid = [];
-    const maxPerRow = 5;
+    const photosPerRow = 5;
     const maxPhotos = 25;
-    for (let i = 0; i < maxPhotos; i += maxPerRow) {
-      photoGrid.push(photos.slice(i, i + maxPerRow));
+    for (let i = 0; i < maxPhotos; i += photosPerRow) {
+      photoGrid.push(photos.slice(i, i + photosPerRow));
     }
+
     return (
       <div>
-        {photoGrid.map(row =>
-          (<div>
-            {row.map(photo =>
-              <img src={photo.thumbnailUrl} alt="thumbnail-placeholder" />,
+        {photoGrid.map((row, rIndex) =>
+          // create a uniq key
+          (<div key={row.map(photo => photo.id).join()}>
+            {row.map((photo, pIndex) =>
+              (<a
+                key={photo.id}
+                role="link"
+                tabIndex={(rIndex * photosPerRow) + pIndex}
+                onClick={() => this.handleClick(photo)}
+              >
+                <img src={photo.thumbnailUrl} alt={photo.title} />
+              </a>),
             )}
           </div>),
         )}
@@ -32,6 +48,7 @@ class Photos extends Component {
 }
 
 Photos.propTypes = {
+  photos: PropTypes.arrayOf(photoPropType).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

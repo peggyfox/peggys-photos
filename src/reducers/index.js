@@ -1,11 +1,20 @@
 import { combineReducers } from 'redux';
-import { FETCH_PHOTOS_SUCCESS } from '../actions';
+import { UPDATE_PHOTOS, UPDATE_SELECTED_PHOTO } from '../actions';
 
-const defaultPhotos = []; // TODO: get from local storage
+const defaultPhotos = [];
 const photos = (state = defaultPhotos, action) => {
   switch (action.type) {
-    case FETCH_PHOTOS_SUCCESS:
+    case UPDATE_PHOTOS:
       return action.photos;
+    default:
+      return state;
+  }
+};
+
+const selectedPhoto = (state = null, action) => {
+  switch (action.type) {
+    case UPDATE_SELECTED_PHOTO:
+      return action.photo;
     default:
       return state;
   }
@@ -13,6 +22,7 @@ const photos = (state = defaultPhotos, action) => {
 
 const rootReducer = combineReducers({
   photos,
+  selectedPhoto,
 });
 
 export default rootReducer;

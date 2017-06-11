@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './configure_store';
 import App from './components/App';
 
-const store = configureStore();
+const photos = localStorage.photos ? JSON.parse(localStorage.photos) : [];
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <App preloadedState={{ photos }} />,
   document.getElementById('root'),
 );

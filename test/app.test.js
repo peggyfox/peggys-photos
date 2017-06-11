@@ -4,7 +4,7 @@ import App from '../src/components/App';
 
 describe('smoke test', () => {
   it('renders with no errors', () => {
-    const component = renderer.create(<App />);
+    const component = renderer.create(<App preloadedState={{ photos: [] }} />);
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
