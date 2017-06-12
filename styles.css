@@ -1,0 +1,39 @@
+header {
+  height: 60px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.thumbnail {
+  cursor: pointer;
+}
+
+.thumbnail img {
+  max-width: 150px;
+}
+
+.modal-container {
+  position: absolute;
+  top: 70px;
+  margin: 0 auto;
+  width: 900px;
+}
+
+.modal-content {
+  width: 600px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+input, textarea {
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 200px;
+  height: 50px;
+}

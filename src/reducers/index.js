@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import { UPDATE_PHOTOS, UPDATE_SELECTED_PHOTO } from '../actions';
 
-const defaultPhotos = [];
-const photos = (state = defaultPhotos, action) => {
+const photos = (state = [], action) => {
   switch (action.type) {
     case UPDATE_PHOTOS:
       return action.photos;

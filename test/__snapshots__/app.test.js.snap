@@ -5,15 +5,17 @@ exports[`smoke test renders with no errors 1`] = `
   className="container"
 >
   <header>
-    Peggys Photos
+    <h1>
+      Peggys Photos
+    </h1>
   </header>
-  <div>
-    <div />
-    <div />
-    <div />
-    <div />
+  <div
+    className="photos"
+  >
     <div />
   </div>
-  <div />
+  <div
+    className="modal-container"
+  />
 </div>
 `;

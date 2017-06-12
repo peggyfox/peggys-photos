@@ -26,12 +26,13 @@ class Photos extends Component {
     }
 
     return (
-      <div>
+      <div className="photos">
         {photoGrid.map((row, rIndex) =>
           // create a uniq key
           (<div key={row.map(photo => photo.id).join()}>
             {row.map((photo, pIndex) =>
               (<a
+                className="thumbnail"
                 key={photo.id}
                 role="link"
                 tabIndex={(rIndex * photosPerRow) + pIndex}

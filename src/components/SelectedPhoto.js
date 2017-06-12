@@ -26,12 +26,14 @@ class SelectedPhoto extends Component {
   render() {
     const { selectedPhoto } = this.props;
     return (
-      <div>
+      <div className="modal-container">
         { selectedPhoto &&
-          <div className="modal">
+          <div className="modal-content">
             <img src={selectedPhoto.url} alt={selectedPhoto.title} />
+            <h3>{selectedPhoto.title}</h3>
             <form onSubmit={this.handleSubmit}>
-              <input type="text" value={selectedPhoto.description} placeholder="Enter a description" name="description" onChange={this.handleChange} />
+              <textarea value={selectedPhoto.description} placeholder="Enter a description" name="description" onChange={this.handleChange} />
+              <br />
               <input type="submit" value="Save" />
             </form>
           </div>
